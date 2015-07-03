@@ -13,13 +13,13 @@ public class TestValidationIO {
 
     private static final String resources = "src/test/resources";
 
-    public int fileTest(String inputFileName, String outputFileName) throws IOException {
+    public void fileTest(String inputFileName, String outputFileName, int expectedStructuresCount) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(resources + "/" + inputFileName));
         StringWriter stringWriter = new StringWriter();
         BufferedWriter writer = new BufferedWriter(stringWriter);
 
         Validator validator = new Validator();
-        int structuresCount = validator.validate(reader, writer);
+        int actualStructuresCount = validator.validate(reader, writer);
 
         reader.close();
         writer.close();
@@ -28,8 +28,7 @@ public class TestValidationIO {
         String actual = stringWriter.toString();
 
         Assert.assertEquals(expected, actual);
-        
-        return structuresCount;
+        Assert.assertEquals(expectedStructuresCount, actualStructuresCount);
     }
 
     /**
@@ -38,7 +37,7 @@ public class TestValidationIO {
      */
     @Test
     public void providedExampleTest() throws IOException {
-        fileTest("providedExampleInput", "providedExampleOutput");
+        fileTest("providedExampleInput", "providedExampleOutput", 5);
     }
 
     /**
@@ -47,7 +46,7 @@ public class TestValidationIO {
      */
     @Test
     public void redAdjS() throws IOException {
-        fileTest("redAdjSInput", "redAdjSOutput");
+        fileTest("redAdjSInput", "redAdjSOutput", 3);
     }
 
     /**
@@ -56,7 +55,7 @@ public class TestValidationIO {
      */
     @Test
     public void redCells() throws IOException {
-        fileTest("redCellsInput", "redCellsOutput");
+        fileTest("redCellsInput", "redCellsOutput", 1);
     }
 
     /**
@@ -65,7 +64,7 @@ public class TestValidationIO {
      */
     @Test
     public void yellowAdjS() throws IOException {
-        fileTest("yellowAdjSInput", "yellowAdjSOutput");
+        fileTest("yellowAdjSInput", "yellowAdjSOutput", 3);
     }
 
     /**
@@ -74,7 +73,7 @@ public class TestValidationIO {
      */
     @Test
     public void yellowLinear() throws IOException {
-        fileTest("yellowLinearInput", "yellowLinearOutput");
+        fileTest("yellowLinearInput", "yellowLinearOutput", 1);
     }
 
     /**
@@ -83,7 +82,7 @@ public class TestValidationIO {
      */
     @Test
     public void greenAdjS() throws IOException {
-        fileTest("greenAdjSInput", "greenAdjSOutput");
+        fileTest("greenAdjSInput", "greenAdjSOutput", 1);
     }
 
     /**
@@ -92,7 +91,7 @@ public class TestValidationIO {
      */
     @Test
     public void blueStructs() throws IOException {
-        fileTest("blueStructsInput", "blueStructsOutput");
+        fileTest("blueStructsInput", "blueStructsOutput", 3);
     }
 
     /**
@@ -101,7 +100,7 @@ public class TestValidationIO {
      */
     @Test
     public void cellAvg() throws IOException {
-        fileTest("cellAvgInput", "cellAvgOutput");
+        fileTest("cellAvgInput", "cellAvgOutput", 4);
     }
 
     /**
@@ -110,7 +109,6 @@ public class TestValidationIO {
      */
     @Test
     public void valid() throws IOException {
-        int structuresCount = fileTest("validInput", "validOutput");
-        Assert.assertEquals(6, structuresCount);
+        fileTest("validInput", "validOutput", 6);
     }
 }

@@ -38,6 +38,7 @@ public class Validator {
      * @param reader provides the description of a grid
      * @param writer here is written the result of the validation
      * @throws IOException
+     * @return number of all structures in the grid
      */
     public int validate(BufferedReader reader, BufferedWriter writer) throws IOException {
         List<InputLine> lines = Parser.parse(reader);
