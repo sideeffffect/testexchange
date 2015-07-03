@@ -39,7 +39,7 @@ public class Validator {
      * @param writer here is written the result of the validation
      * @throws IOException
      */
-    public void validate(BufferedReader reader, BufferedWriter writer) throws IOException {
+    public int validate(BufferedReader reader, BufferedWriter writer) throws IOException {
         List<InputLine> lines = Parser.parse(reader);
 
         Grid grid = new Grid();
@@ -53,5 +53,7 @@ public class Validator {
             OutputLine outputLine = new OutputLine(line, answer);
             writer.append(outputLine.toString()).append('\n');
         }
+        
+        return grid.structuresCount();
     }
 }

@@ -10,4 +10,5 @@
 5,0,G,OK, Red structure #1 (cell 1/2)
 5,2,B,OK, Blue structure #2 (cell 1/2)
 5,1,B,OK, Blue structure #2 (cell 1/2)
-0,5,R,OK, Red structure #1 (cell 5/5)
+0,4,R,OK, Red structure #1 (cell 5/5)
+9,9,R,OK, Red structure #2 (cell 1/1)

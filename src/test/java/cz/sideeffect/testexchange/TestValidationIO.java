@@ -13,13 +13,13 @@ public class TestValidationIO {
 
     private static final String resources = "src/test/resources";
 
-    public void fileTest(String inputFileName, String outputFileName) throws IOException {
+    public int fileTest(String inputFileName, String outputFileName) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(resources + "/" + inputFileName));
         StringWriter stringWriter = new StringWriter();
         BufferedWriter writer = new BufferedWriter(stringWriter);
 
         Validator validator = new Validator();
-        validator.validate(reader, writer);
+        int structuresCount = validator.validate(reader, writer);
 
         reader.close();
         writer.close();
@@ -28,6 +28,8 @@ public class TestValidationIO {
         String actual = stringWriter.toString();
 
         Assert.assertEquals(expected, actual);
+        
+        return structuresCount;
     }
 
     /**
@@ -108,6 +110,7 @@ public class TestValidationIO {
      */
     @Test
     public void valid() throws IOException {
-        fileTest("validInput", "validOutput");
+        int structuresCount = fileTest("validInput", "validOutput");
+        Assert.assertEquals(6, structuresCount);
     }
 }
